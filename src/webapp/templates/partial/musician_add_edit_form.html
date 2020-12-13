@@ -1,0 +1,23 @@
+{% load widget_tweaks %}
+{% csrf_token %}
+
+{% for error in form.non_field_erros %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endfor %}
+
+
+{% for field in form %}
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}: {% if field.field.required %}*{% endif %}</label>
+        {% if field.errors %}
+            {{ field | add_class:'form-control is-invalid' }}
+        {% else %}
+            {{ field | add_class:'form-control' }}
+        {% endif %}
+        {% for error in field.errors %}
+            <span class="invalid-feedback">{{ error }}</span>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+<button type="submit" class="btn btn-info">Save</button>

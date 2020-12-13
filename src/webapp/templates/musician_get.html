@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} Get musician {% endblock %}
+
+{% block content %}
+    <h3>Get musicians</h3>
+    <form action="{% url 'musician_get' %}" method="get" novalidate>
+        <button type="submit" class="btn btn-danger">Get</button>
+    </form>
+{% endblock %}

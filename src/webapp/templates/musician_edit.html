@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit musician {% endblock %}
+
+{% block content %}
+    <h3>Edit musician</h3>
+    <form action="{% url 'musician_edit' musician.pk %}" method="post" novalidate>
+        {% include 'partial/musician_add_edit_form.html' %}
+    </form>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="mb-3">
+        <form action="{% url 'musicians_list' %}" method="get">
+            <div class="form-row">
+                <div class="form-group col-md-10">
+                    {% if form.search.value %}
+                        <input type="search" name="search" value="{{ form.search.value }}"
+                               placeholder="Search" class="form-control">
+                    {% else %}
+                        <input type="search" name="search" value=""
+                               placeholder="Search" class="form-control">
+                    {% endif %}
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-block btn-outline-info">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        {% for musician in musicians %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ musician.author }}</h5>
+                        <p class="card-text d-flex justify-content-between border-bottom">
+                            <span class="text-muted">Song: </span>
+                            {{ musician.song }}
+                        </p>
+                        <p class="card-text d-flex justify-content-between border-bottom">
+                            <span class="text-muted">Position: </span>
+                            {{ musician.position }}
+                        </p>
+                        <div class="text-right">
+                            <a href="{% url 'musician' musician.pk %}" class="card-link text-info">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

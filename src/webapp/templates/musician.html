@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ musician.author }}</h5>
+            <p class="card-text">{{ musician.song }}</p>
+            <p class="card-text border-bottom">
+                <span class="text-muted">Position: </span>
+                ${{ musician.position }}
+            </p>
+            <div class="text-right">
+                <a href="{% url 'musician_edit' musician.pk %}" class="card-link text-warning">Edit</a>
+                <a href="{% url 'musician_delete' musician.pk %}" class="card-link text-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
